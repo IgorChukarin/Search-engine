@@ -6,10 +6,9 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(indexes = {@Index(name = "path_index", columnList = "path", unique = true)})
+@Table(name = "page", indexes = @Index(name = "path_index", columnList = "path, site_id", unique = true))
 @Data
 public class Page {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,7 +17,7 @@ public class Page {
     @JoinColumn(name = "site_id", referencedColumnName = "id", nullable = false)
     private Website website;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String path;
 
     @NotNull
