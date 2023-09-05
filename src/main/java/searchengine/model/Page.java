@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "page", indexes = @Index(name = "path_index", columnList = "path, site_id", unique = true))
 @Data
 public class Page {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -25,4 +26,7 @@ public class Page {
 
     @Column(columnDefinition = "MEDIUMTEXT", nullable = false)
     private String content;
+
+    public Page() {
+    }
 }

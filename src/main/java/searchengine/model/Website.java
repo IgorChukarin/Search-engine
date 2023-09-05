@@ -1,10 +1,12 @@
 package searchengine.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "site")
@@ -30,4 +32,10 @@ public class Website {
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "website")
+    private Set<Page> pageSet;
+
+    public Website() {
+    }
 }
